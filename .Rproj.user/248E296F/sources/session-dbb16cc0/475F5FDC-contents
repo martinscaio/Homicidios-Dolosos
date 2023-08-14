@@ -31,19 +31,22 @@ library(DT)
 
 
 
-Com alguma frequência os noticiários reportam informações sobre os dados criminais na cidade de São Paulo, porém muitas vezes não informam quais são as regiões da cidade mais e/ou menos vulneráveis a cada tipo de ocorrência.
+Com alguma frequência os noticiários reportam informações sobre os dados criminais na cidade de São Paulo, porém muitas vezes não informam quais são as regiões da cidade mais/menos vulneráveis a cada tipo de ocorrência.
 
 A Folha de SP, por exemplo, noticiou no dia 26 de Janeiro de 2023 que a ["Cidade de São Paulo tem o menor número de assassinatos em 20 anos"](https://www1.folha.uol.com.br/cotidiano/2023/01/cidade-de-sao-paulo-tem-o-menor-numero-de-assassinatos-em-20-anos.shtml). Contudo, a reportagem não informa quais são as regiões de São Paulo que registram as maiores ocorrências. 
 
 O G1 noticiou que os [homícidios aumentaram 4,7% em 2022](https://g1.globo.com/sp/sao-paulo/noticia/2023/01/26/homicidios-aumentam-47percent-e-estupros-19percent-no-estado-de-sp-em-2022-latrocinios-cairam-73percent.ghtml). A matéria também informa que a cidade de São Paulo teve alta nos crimes de roubos e furtos em geral. Mais uma vez, a reportagem não diz nada a respeito de quais são as regiões que mais registram casos.
 
+O Uol também noticiou que a cidade de São Paulo apresentou [queda na taxa de homícidios e aumento no número de roubos](https://noticias.uol.com.br/cotidiano/ultimas-noticias/2022/07/25/dados-ssp-criminalidade-sao-paulo.htm) Novamente, não é informado em detalhes quais são as localidades mais propensas a registrar tais ocorrências.
+
+Aparentemente somente o Globo tem explorado a fundo esses temas nos últimos meses: apresentando não só as regiões como também as ruas que mais registraram roubos de veículos e de celulares (colocar link aqui). Porém, ainda não fizeram sobre os casos de homicídio
 
 
-Este estudo irá analisar apenas os casos de homicídio doloso. Será apresentado a evolução do número de homicídios dolosos na cidade de São Paulo nos últimos anos (2017-2022), assim como as regiões que mais registram esse tipo de ocorrência.
+Este "estudo" irá analisar apenas os casos de homicídios dolosos. Será apresentado de maneira geral a evolução do número de homicídios dolosos na cidade de São Paulo nos últimos anos (2017-2022), assim como as regiões que mais registram esse tipo de ocorrência. Ao final, haverá um mapa interativo com as localizações reais dos crimes de homicídios dolosos na cidade de SP.
 
 
 
-Quais os meses que apresentam maiores taxas de ocorrência ? Quais são as regiões que mais registram ocorrências de Homicídios Dolosos ? Houve uma diminuição nos últimos anos ?  Pretendo responder estas perguntas nesta breve análise.
+Quais os meses que apresentam maiores taxas de ocorrência ? Quais são as regiões que mais registram ocorrências de homicídios dolosos ? Houve uma diminuição nos últimos anos ?  Pretendo responder estas perguntas nesta breve análise.
 
 
 
@@ -53,13 +56,15 @@ Quais os meses que apresentam maiores taxas de ocorrência ? Quais são as regi�
 
 Os dados foram extraídos no Portal da Transparência no site da [Secretaria de Segurança Pública de São Paulo](http://www.ssp.sp.gov.br/transparenciassp/Default.aspx)
 
-Os dados fornecidos pela Secretaria limitam-se ao anos 2017-2022, e por isso a análise irá focar somente neste ciclo temporal
+Os dados fornecidos pela Secretaria limitam-se ao anos 2017-2022, e por isso a análise irá focar somente neste ciclo temporal.
+
+A análise realizada com a linguagem R. Todo o código utilizado para gerar esse estudo poderá ser encontrado no meu [github](https://github.com/martinscaio/Homicidios-Dolosos)
 
 
 
 
 
-### Evolução do número de vítimas de homicídios dolosos nos últimos anos
+### Evolução do Nº de vítimas de homicídios dolosos nos últimos anos
 
 
 
@@ -79,12 +84,12 @@ homicidio$mes<-factor(homicidio$mes, levels=c("jan","fev","mar","abr","mai","jun
 
 
 
-```{r a, echo=FALSE, message=FALSE, warning=FALSE}
+```{r a, echo=FALSE, message=FALSE, warning=FALSE, out.width = '73%'}
 homicidio %>% 
   group_by(ano) %>% 
   summarise(vitimas = sum(vitimas)) %>% 
-  hchart('column', hcaes(x = 'ano', y = 'vitimas')) %>% 
-  highcharter::hc_title(text = 'Número de Vítimas de Homicídio Doloso na Cidade de SP')
+  hchart('column', hcaes(x = 'ano', y = 'vitimas'))# %>% 
+  #highcharter::hc_title(text = 'Número de Vítimas de Homicídio Doloso na Cidade de SP')
 
 
 ```
@@ -119,7 +124,9 @@ homicidio %>% ggplot(aes(x = mes, y = vitimas))+
         plot.title = element_text(hjust = 0.5),
         plot.title.position = "plot",
         strip.background=element_rect(colour="black"),
-        axis.text.x = element_text(angle = 45))
+        axis.text.x = element_text(angle = 45))+
+  coord_cartesian(ylim = c(0, 90), expand = FALSE)+
+  scale_y_continuous(breaks = seq(0, 90, by = 20))
 
 ```
 
@@ -164,7 +171,7 @@ Abaixo uma tabela com o número vítimas de Homicídios Dolosos (2017-2022) por 
 
 
 
-```{r b, echo=FALSE, message=FALSE, warning=FALSE}
+```{r b, echo=FALSE, message=FALSE, warning=FALSE,out.width = '85%'}
 
 
 homicidio_regioes <- read_csv("C:\\Users\\Caio\\Desktop\\Dados Criminais  São Paulo\\Dados utilizados na análise (já modificados)\\homicidio_regioes.csv")
