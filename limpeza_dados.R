@@ -293,6 +293,7 @@ write.csv(homicidio_regioes,"C:\\Users\\Caio\\Desktop\\Dados Criminais  São Pau
 homicidio_mapa <- homicidio_mapa %>% group_by(DP_COD, ano_ocorrencia) %>% summarise(vitimas = sum(`Nº DE VÍT HD`))
 
 
+write.csv(homicidio_mapa,"C:/Users/Caio/Desktop/Projeto - Homicidios Dolosos/dados_prontos/homicidio_mapa.csv")
 
 
 
@@ -315,6 +316,13 @@ homicidio_mapa$homicidios <-  cut(homicidio_mapa$vitimas,
 dps_id <- readRDS("C:\\Users\\Caio\\Desktop\\Learning Shiny\\aprendendo_shiny\\dps_id.rds")
 
 
+# teste dia 24/10
+homicidio_mapa %>% view()
+
+write.csv(homicidio_mapa,"C:/Users/Caio/Desktop/Projeto - Homicidios Dolosos/dados_prontos/homicidio_mapa.csv")
+
+
+homicidio_mapa <- read_csv("C:/Users/Caio/Desktop/Projeto - Homicidios Dolosos/dados_prontos/homicidio_mapa.csv")
 
 # colocar varios interativos lado a lado
 
@@ -356,7 +364,7 @@ i = girafe(ggobj =  b,
            ) )
 
 
-
+i
 
 # verificar os faltantes
 

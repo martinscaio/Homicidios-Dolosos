@@ -2,7 +2,10 @@
 title: "Homicídios Dolosos na cidade de São Paulo"
 author: "Caio Martins"
 date:
-output: html_document
+output: 
+  html_document:
+    theme: united
+    highlight: tango
 options:
   - "width: 80"
 ---
@@ -68,9 +71,12 @@ A análise foi realizada com a linguagem R. Todo o código utilizado para gerar 
 
 
 
+
+
+
 ```{r, message=FALSE, warning=FALSE, include=FALSE}
 
-homicidio <- read_csv("C:\\Users\\Caio\\Desktop\\Projeto - Homicídios Dolosos\\dados_prontos\\homicidio_geral.csv")
+homicidio <- read_csv("C:\\Users\\Caio\\Desktop\\Projeto - Homicidios Dolosos\\dados_prontos\\homicidio_geral.csv")
 
 homicidio$mes<-factor(homicidio$mes, levels=c("jan","fev","mar","abr","mai","jun"
 ,"jul","ago","set","out","nov","dez"))
@@ -107,7 +113,7 @@ E se quebrarmos os dados por mes/ano ?!
 
 
 
-```{r d, echo=FALSE, message=FALSE, warning=FALSE}
+```{r d, echo=FALSE, message=FALSE, warning=FALSE, out.width = '73%'}
 
 
 
@@ -132,7 +138,7 @@ homicidio %>% ggplot(aes(x = mes, y = vitimas))+
 
 
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, out.width = '73%'}
 
 #homicidio %>% pivot_wider(names_from = ano, values_from = vitimas) %>% kable('html', table.attr = "style='width:74%;'", align = "c")
 
@@ -180,7 +186,7 @@ Abaixo uma tabela com o número vítimas de Homicídios Dolosos (2017-2022) por 
 ```{r b, echo=FALSE, message=FALSE, warning=FALSE,out.width = '85%'}
 
 
-homicidio_regioes <- read_csv("C:\\Users\\Caio\\Desktop\\Projeto - Homicídios Dolosos\\dados_prontos\\homicidio_regioes.csv")
+homicidio_regioes <- read_csv("C:\\Users\\Caio\\Desktop\\Projeto - Homicidios Dolosos\\dados_prontos\\homicidio_regioes.csv")
 
 homicidio_regioes %>% select(DP_CIRCUNSCRICAO, '2017','2018','2019','2020','2021','2022') %>%
   DT::datatable(colnames = c('Delegacia', '2017', '2018', '2019', '2020','2021','2022'), width = '74%')
@@ -201,7 +207,7 @@ Um olhar geral sobre dos mapas georreferenciados de vítimas de homicídio na ci
 
 ```{r pressure, echo=FALSE, out.width = '100%'}
 
-knitr::include_graphics("C:\\Users\\Caio\\Desktop\\Projeto - Homicídios Dolosos\\imagens_graficos\\teste2.png")
+knitr::include_graphics("C:\\Users\\Caio\\Desktop\\Projeto - Homicidios Dolosos\\imagens_graficos\\teste2.png")
 
 
 
@@ -215,7 +221,7 @@ Vamos olhar de uma maneira mais detalhada para o ano de 2022
 library(htmltools)
 
 
-html_content2 <- readLines("C:\\Users\\Caio\\Desktop\\Projeto - Homicídios Dolosos\\imagens_graficos\\widget_i.html", warn = FALSE)
+html_content2 <- readLines("C:\\Users\\Caio\\Desktop\\Projeto - Homicidios Dolosos\\imagens_graficos\\widget_i.html", warn = FALSE)
 
 # Transformando o vetor de linhas em uma única string
 html_string2 <- paste(html_content2, collapse = "\n")
@@ -251,7 +257,7 @@ Sabemos quais são os distritos policiais que mais registram vítimas de homicí
 
 library(leaflet)
 
-homicidio_georeferenciado <- read_csv("C:\\Users\\Caio\\Desktop\\Projeto - Homicídios Dolosos\\dados_prontos\\homicidio_georreferenciado.csv")
+homicidio_georeferenciado <- read_csv("C:\\Users\\Caio\\Desktop\\Projeto - Homicidios Dolosos\\dados_prontos\\homicidio_georreferenciado.csv")
 
 
 
