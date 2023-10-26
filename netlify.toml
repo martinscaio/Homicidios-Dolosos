@@ -2,4 +2,4 @@
   command = "echo 'No build process required'"
 
 [publish]
-  directory = "HomicidiosDolosos_SP.html"
+  directory = "https://github.com/martinscaio/Homicidios-Dolosos/blob/main/HomicidiosDolosos_SP.html"
