@@ -2,6 +2,13 @@
 
 Repositório do projeto/artigo que analisa os dados de homicídios dolosos na cidade de São Paulo. 
 
+Clique no link abaixo para acessar o artigo
+
+[Relatório](https://homicidios-dolosos-sp.netlify.app)
+
+
+### Introdução
+
 Frequentemente é noticiado em reportagens queda/aumento de dados criminais. Porém, com pouca frequência é explicitado quais são as regiões/ruas/localidades de SP mais propensas a registrar tais ocorrências.
 
 Este projeto procurar fazer isso com os dados de homicídios dolosos na cidade de SP entre 2017 e 2022.
@@ -11,6 +18,10 @@ Será que existe um padrão geográfico na distribuição dos casos ? Quais são
 
 ### Metodologia
 
-Os dados utilizados foram extraídos do 
+Os dados foram extraídos no Portal da Transparência no site da Secretaria de Segurança Pública de São Paulo. 
 
 Todas as análises, limpeza de dados, gráficos e relatório foram feitos utilizando a linguagem R e suas dependências.
+
+
+### Análise
+
