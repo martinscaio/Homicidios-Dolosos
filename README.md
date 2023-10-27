@@ -25,3 +25,17 @@ Todas as análises, limpeza de dados, gráficos e relatório foram feitos utiliz
 
 ### Análise
 
+O relatório com todas as análises pode ser acessado clicando [aqui](https://homicidios-dolosos-sp.netlify.app)
+
+Abaixo vou compartilhar duas análises contidas no relatório:
+
+O relatório contempla um mapa interativo de SP por distritos policiais com os dados de homicídio doloso em 2022. É possível interagir e verificar quais são as regiões que mais registraram quanto registraram e assim por diante. É possível notar também um padrão geográfico na distribuição dos casos.
+
+
+![Texto Alternativo](https://github.com/martinscaio/Homicidios-Dolosos/blob/main/GIF_MapaInterativo_SP.gif)
+
+
+Abaixo é possível verificar um mapa interativo da cidade de SP com as marcações reais dos homicídios dolosos em 2022. Foi utilizado as latitudes/longitudes que a própria Secretaria disponibiliza.
+
+![Texto Alternativo](https://github.com/martinscaio/Homicidios-Dolosos/blob/main/Leaflet_HomicidiosDolososSP.png)
+
